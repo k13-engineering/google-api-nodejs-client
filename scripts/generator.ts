@@ -147,12 +147,12 @@ export default class Generator {
    */
   constructor (options) {
     this._options = options || {};
-
+    
     /**
-     * This API can generate thousands of concurrent HTTP requests.
-     * If left to happen while generating all APIs, things get very unstable.
-     * This makes sure we only ever have 10 concurrent network requests, and
-     * adds retry logic.
+     * This API can generate thousands of concurrent HTTP requests.  
+     * If left to happen while generating all APIs, things get very unstable.  
+     * This makes sure we only ever have 10 concurrent network requests, and 
+     * adds retry logic. 
      */
     this._requestQueue = async.queue((opts, callback) => {
       async.retry(3, () => {
@@ -174,13 +174,13 @@ export default class Generator {
   }
 
   /**
-   * Add a requests to the rate limited queue.
+   * Add a requests to the rate limited queue. 
    * @param opts Options to pass to the default transporter
-   * @param callback
+   * @param callback 
    */
   private makeRequest (opts, callback) {
     this._requestQueue.push(opts, callback);
-  }
+  } 
 
   /**
    * Log output of generator
@@ -193,9 +193,9 @@ export default class Generator {
   };
 
   /**
-   * Write to the state log, which is used for debugging.
+   * Write to the state log, which is used for debugging.  
    * @param id DiscoveryRestUrl of the endpoint to log
-   * @param message
+   * @param message 
    */
   private logResult (id, message) {
     if (!this._state[id]) {
@@ -250,10 +250,10 @@ export default class Generator {
 
   /**
    * Given a discovery doc, parse it and recursively iterate over the various embedded links.
-   * @param api
-   * @param schema
-   * @param path
-   * @param tasks
+   * @param api 
+   * @param schema 
+   * @param path 
+   * @param tasks 
    */
   private getFragmentsForSchema (apiDiscoveryUrl, schema, path, tasks) {
     if (schema.methods) {
